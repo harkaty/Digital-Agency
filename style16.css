@@ -7,6 +7,9 @@
   color: #eee;
   font-family: 'Roboto', sans-serif;
 }
+form{
+    display: none;
+}
 html{
     position: relative;
 }
@@ -37,6 +40,7 @@ body::after{
   position: absolute;
 }
 
+/* styling the nabar */
 nav{
     display: flex;
     align-items: center;
@@ -44,7 +48,7 @@ nav{
     width: 100%;
     height: 20vh;
     border-bottom: 2px solid rgba(255, 255, 255, 0.459);
-    transition: 1.5s;
+    transition: 0.5s;
     position: fixed;
     background-color: transparent;
 }
@@ -100,12 +104,36 @@ nav .sublist{
     font-size: 15px;
     transition: 1s;
 }
+nav .sublist::before{
+    content: "";
+    bottom: 100%;
+    left: 35%;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-bottom-color: black;
+    position: absolute;
+}
 nav .sublist a{
     margin: 10px;
 }
-nav ul li:hover .sublist{
+ul li:hover .sublist{
     display: flex;
+    animation: show 0.5s 1;
     top: 100%;
+}
+@keyframes show{
+    from{
+       display: flex;
+       top: 130%;
+       opacity: 0.5; 
+    }
+    
+    to{
+       display: flex;
+       top: 100%;
+       opacity: 1;
+    }
 }
 nav ul li{
     display: inline-flex;
@@ -233,7 +261,7 @@ ul li a:hover:before{
 .nav.active{
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.746);
-    transition: 1.5s;
+    transition: 1s;
 }
 
 .nav.active ul{
@@ -298,6 +326,76 @@ ul li a:hover:before{
     left: 20%;
 }
 
-.test{
-    height: 1000px;
+nav.search{
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.746);
+    transition: 1s;
 }
+
+nav.search .logo, nav.search ul, nav.search .humberger{
+    display: none;
+}
+nav.search .searchIcon{
+    flex: 0.6;
+    width: 45px;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 40vh;
+}
+nav.search .searchIcon:hover{
+    box-shadow: -0.75px 1px 1px 10px rgba(255, 255, 255, 0.201);
+}
+nav.search .searchIcon::after{
+   display: none;
+}
+
+nav.search .searchIcon::before{
+    content: "X";
+    color: black;
+    font-weight: 900;
+    font-size: 25px;
+    border-color: white;
+    top: 12%;
+    left: 27%;
+}
+
+nav.search form{
+    display: flex;
+    border-bottom: 1px solid;
+    width: 50%;
+    height: 12%;
+    margin-bottom: 36vh;
+}
+
+nav.search form input{
+    height: 70%;
+    width: 100%;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.446);
+    border:none;
+    opacity: 0.1;
+    color: white;
+}
+nav.search form input:hover{
+    opacity: 0.5;
+}
+
+@media screen and (max-width:800px){
+    nav.active ul{
+        display: flex;
+    }
+    nav.active .sublist, ul li:hover .sublist{
+        display: none;
+    }
+    nav.active .logo::after, nav.active .logo::before{
+        top: 15px;
+    }
+    nav.search form{
+        width: 95%;
+    }
+}
+
