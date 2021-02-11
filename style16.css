@@ -558,9 +558,9 @@ main{
     transition: 1s;
 }
 
-.feilds div:hover{
-    transform: rotateY(180deg);
-    background-color: palevioletred;
+.feilds div:hover, .feilds div:hover h4{
+    transform: perspective(800px) rotateY(180deg) scale(0.9);
+    background-color: rgb(192, 25, 81);
     transition: 1s;
 }
 
